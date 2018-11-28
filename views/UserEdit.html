@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户编辑页面</title>
+</head>
+<body>
+    <form action="/user/update" method="post">
+        <input type="hidden" name="id" value="<%= user._id %>">
+        <input type="text" name="username" value="<%= user.username %>">
+        <input type="email" name="email" value="<%= user.email %>">
+        <button type="submit">update</button>
+    </form>
+</body>
+</html>
