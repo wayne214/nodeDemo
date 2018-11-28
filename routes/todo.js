@@ -2,22 +2,28 @@ const express = require('express');
 const router = express.Router();
 const todoData = require('../data').todos;
 
-router.get('/', (req, res)=> {
-    const todos = [
-        {
-            title: "吃水果",
-            date: new Date(),
-            completed: false,
-            description: "保持健康"
-        },
-        {
-            title: "健身",
-            date: new Date(),
-            completed: false,
-            description: "保持更健康"
-        }
-    ];
-    res.status(200).json(todos);
+router.get('/', async (req, res)=> {
+    // const todos = [
+    //     {
+    //         title: "吃水果",
+    //         date: new Date(),
+    //         completed: false,
+    //         description: "保持健康"
+    //     },
+    //     {
+    //         title: "健身",
+    //         date: new Date(),
+    //         completed: false,
+    //         description: "保持更健康"
+    //     }
+    // ];
+    try {
+        const todos = await todoData.getAllTodos();
+        res.status(200).json(todos);
+    }catch (e) {
+        res.sendStatus(404)
+    }
+
 });
 
 router.post('/', async(req, res) => {

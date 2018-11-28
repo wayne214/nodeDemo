@@ -16,11 +16,12 @@ var app = express();
 // app.engine('html', ejs.__express);
 // app.set('view engine', 'html');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev')); // dev模式 后台打印日志
+app.use(express.json()); // 将返回数据格式为json数据
+app.use(express.urlencoded({ extended: false })); // 自动把url里除了英文和数字之外的字符，
+                                                 // 如中文，自动加密成%2d%3a%4e这样的格式
+app.use(cookieParser()); // 浏览器cookie
+app.use(express.static(path.join(__dirname, 'public'))); // 静态文件目录
 
 configRoutes(app);
 

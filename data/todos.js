@@ -27,8 +27,17 @@ const getTodoById = async id => {
         }
     };
 
-
+const getAllTodos = async () => {
+    try {
+        const todoCollection = await todos();
+        const todoList = await todoCollection.find().toArray();
+        return todoList;
+    } catch (e) {
+        throw e;
+    }
+};
 module.exports = {
    addTodo,
-   getTodoById
+   getTodoById,
+   getAllTodos,
 }
