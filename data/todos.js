@@ -15,6 +15,7 @@ const addTodo = async todo => {
             throw e
         }
     };
+// 查询
 const getTodoById = async id => {
         if (!id) throw "必须提供todo id";
         try {
@@ -26,8 +27,8 @@ const getTodoById = async id => {
             throw e;
         }
     };
-
-const getAllTodos = async () => {
+// 获取所有
+const getAllTodos = async (todo) => {
     try {
         const todoCollection = await todos();
         const todoList = await todoCollection.find().toArray();
@@ -36,8 +37,22 @@ const getAllTodos = async () => {
         throw e;
     }
 };
+// 删除
+const deleteTodoById = async (id) => {
+    if (!id) throw "必须提供todo id";
+    try {
+        const todoCollection = await todos();
+        const deleteInfo = await todoCollection.deleteOne({_id: ObjectID(id)});
+        console.log('deleteInfo', deleteInfo);
+        if (deleteInfo.deletedCount === 0) throw "删除此TODO失败";
+        return deleteInfo.deletedCount;
+    } catch (e) {
+        throw e;
+    }
+};
 module.exports = {
    addTodo,
    getTodoById,
    getAllTodos,
+    deleteTodoById
 }
