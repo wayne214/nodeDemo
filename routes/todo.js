@@ -48,7 +48,16 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const todo = await todoData.deleteTodoById(req.params.id)
+        const todo = await todoData.deleteTodoById(req.params.id);
+        res.sendStatus(204);
+    } catch (e) {
+        res.status(404)
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const todo = await todoData.updateTodoById(req.params.id);
         res.sendStatus(204);
     } catch (e) {
         res.status(404)

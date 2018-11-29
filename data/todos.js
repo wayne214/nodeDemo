@@ -50,9 +50,25 @@ const deleteTodoById = async (id) => {
         throw e;
     }
 };
+
+// 更新
+const updateTodoById = async (id) => {
+    if (!id) throw "必须提供todo id";
+    try {
+        const todoCollection = await todos();
+        const updateInfo = await todoCollection.updateOne({_id: ObjectID(id)}, {
+            $set: {title: 'dragosoft'}
+        });
+        if (updateInfo.matchedCount === 0) throw "更新此TODO失败"
+        return updateInfo.upsertedId;
+    }catch (e) {
+        throw e
+    }
+};
 module.exports = {
    addTodo,
    getTodoById,
    getAllTodos,
-    deleteTodoById
-}
+   deleteTodoById,
+   updateTodoById
+};
