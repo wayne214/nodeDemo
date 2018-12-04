@@ -1,5 +1,7 @@
 const todosData = require("./todos");
+const usersData = require("./users");
 
 module.exports = {
-    todos: todosData
+    todos: todosData,
+    users: usersData
 };

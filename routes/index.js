@@ -11,9 +11,9 @@ const userRoutes = require('./users');
 const todoRoutes = require('./todo');
 
 const constructorMethod = app => {
-    app.use('/users', userRoutes);
+    app.use('/api/users', userRoutes);
 
-    app.use('/todos', todoRoutes);
+    app.use('/api/todos', todoRoutes);
 
     app.use('*', (req, res) => {
         res.sendStatus(404)
