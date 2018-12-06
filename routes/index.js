@@ -18,6 +18,14 @@ const constructorMethod = app => {
 
     app.use('/api/auth', authRoutes);
 
+    // app.use('/test', (req, res, next)=> {
+    //     console.log('test1');
+    //     next();
+    // },(req, res)=> {
+    //     console.log('test2');
+    //     res.sendStatus(200)
+    // });
+
     app.use('*', (req, res) => {
         res.sendStatus(404)
     })

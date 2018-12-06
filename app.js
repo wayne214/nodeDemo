@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
-var passport = require('passport');
+var passport = require('passport'); // 权限认证中间件
 
 
 const configRoutes = require('./routes');
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false })); // 自动把url里除了英文
 app.use(cookieParser()); // 浏览器cookie
 app.use(express.static(path.join(__dirname, 'public'))); // 静态文件目录
 
-app.use(passport.initialize());
+app.use(passport.initialize()); // passport初始化
 configRoutes(app);
 
 
