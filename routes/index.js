@@ -9,11 +9,14 @@
 // module.exports = router;
 const userRoutes = require('./users');
 const todoRoutes = require('./todo');
+const authRoutes = require('./auth');
 
 const constructorMethod = app => {
     app.use('/api/users', userRoutes);
 
     app.use('/api/todos', todoRoutes);
+
+    app.use('/api/auth', authRoutes);
 
     app.use('*', (req, res) => {
         res.sendStatus(404)

@@ -1,7 +1,4 @@
-const genericRouter = dataAccessObject => {
-    const express = require("express");
-    const router = express.Router();
-
+const genericRouter = (dataAccessObject, router )=> {
     router.get("/", async (req, res) => {
         try {
             const docs = await dataAccessObject.getAll();

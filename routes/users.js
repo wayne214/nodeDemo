@@ -1,16 +1,6 @@
-const usersData = require("../data").users;
-const todosData = require('../data').todos;
+const express = require("express");
+const router = express.Router();
 const genericRouter = require("./generic");
+const usersData = require("../data").users;
 
-const userRouter = genericRouter(usersData);
-
-userRouter.get('/:userId/todos', async(req, res) => {
-    try {
-        const todos = await todosData.findTodosByUserId(req.params.userId);
-        res.status(200).json(todos);
-    }catch (e) {
-        res.sendStatus(404)
-    }
-});
-
-module.exports = userRouter;
+module.exports = genericRouter(usersData, router);
