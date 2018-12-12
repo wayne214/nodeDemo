@@ -24,6 +24,7 @@ app.use(cookieParser()); // 浏览器cookie
 app.use(express.static(path.join(__dirname, 'public'))); // 静态文件目录
 
 app.use(passport.initialize()); // passport初始化
+
 configRoutes(app);
 
 
